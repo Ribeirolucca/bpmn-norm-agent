@@ -9,6 +9,7 @@ import { validateBpmnXml } from "./validator.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = Number(process.env.PORT || 8787);
+const host = process.env.HOST || "0.0.0.0";
 
 app.use(cors());
 app.use(express.json({ limit: "4mb" }));
@@ -75,6 +76,6 @@ app.use((_req, res, next) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`BPMN Norm Agent API em http://localhost:${port}`);
+app.listen(port, host, () => {
+  console.log(`BPMN Norm Agent API em http://${host}:${port}`);
 });
